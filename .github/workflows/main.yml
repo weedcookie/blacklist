@@ -1,0 +1,30 @@
+name: blacklist ips
+
+on:
+  schedule:
+    - cron: '0 */1 * * *' 
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Configure Git
+      run: |
+        git config user.name "weedcookie"
+        git config user.email "weedcookie01@gmail.com"
+        git remote set-url origin "https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git"
+
+    - name: Make Changes
+      run: |
+        # Make your changes here
+        echo "Updating IPs" >> README.md
+
+    - name: Commit Changes
+      run: |
+        git add .
+        git commit -m "Auto-commit changes"
+        git push origin main  # Change to your main branch name if needed
