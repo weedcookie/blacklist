@@ -35,7 +35,7 @@ df = pd.DataFrame(reports[1:],columns=reports[0])
 
 print (f"Took {round(time.time()-ST, 3)} seconds")
 
-df.to_csv("ips", encoding='utf-8', index=False)
+df.to_csv("ips.csv", encoding='utf-8', index=False)
 with open("ips.txt", "w") as f:
 	f.write('\n'.join(all_ips))
 
